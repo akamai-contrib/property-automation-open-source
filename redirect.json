@@ -1,0 +1,32 @@
+{
+    "name": "/launchpad redirects to https://launchpad.akamai.com/",
+    "children": [],
+    "behaviors": [
+        {
+            "name": "redirect",
+            "options": {
+                "mobileDefaultChoice": "DEFAULT",
+                "destinationProtocol": "HTTPS",
+                "destinationHostname": "OTHER",
+                "destinationPath": "OTHER",
+                "queryString": "IGNORE",
+                "responseCode": 301,
+                "destinationPathOther": "/",
+                "destinationHostnameOther": "launchpad.akamai.com"
+            }
+        }
+    ],
+    "criteria": [
+        {
+            "name": "path",
+            "options": {
+                "matchOperator": "MATCHES_ONE_OF",
+                "values": [
+                    "/launchpad"
+                ],
+                "matchCaseSensitive": false
+            }
+        }
+    ],
+    "criteriaMustSatisfy": "all"
+}

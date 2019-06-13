@@ -1,0 +1,136 @@
+{
+  "rules": {
+    "name": "default",
+    "children": [
+      {
+        "name": "gzip",
+        "children": [],
+        "behaviors": [
+          {
+            "name": "gzipResponse",
+            "options": {
+              "behavior": "ORIGIN_RESPONSE"
+            }
+          }
+        ],
+        "criteria": [
+          {
+            "name": "contentType",
+            "options": {
+              "matchOperator": "IS_ONE_OF",
+              "values": [
+                "text/html*"
+              ],
+              "matchWildcard": true,
+              "matchCaseSensitive": false
+            }
+          }
+        ],
+        "criteriaMustSatisfy": "all"
+      },
+      {
+        "name": "construct response",
+        "children": [],
+        "behaviors": [
+          {
+            "name": "constructResponse",
+            "options": {
+              "enabled": true,
+              "body": "<html><body>Your IP is: {{builtin.AK_CLIENT_REAL_IP}}<br/>Your network latency is: {{builtin.AK_CLIENT_RTT}} <br/>You are connected to Edge Server: {{builtin.AK_GHOST_IP}}<br/>Your TLS version is: {{builtin.AK_TLS_VERSION}}<br/>Your TLS cipher is: {{builtin.AK_TLS_CIPHER_NAME}}</body></html>",
+              "responseCode": 200,
+              "forceEviction": false
+            }
+          }
+        ],
+        "criteria": [
+          {
+            "name": "path",
+            "options": {
+              "matchOperator": "MATCHES_ONE_OF",
+              "values": [
+                "/debug"
+              ],
+              "matchCaseSensitive": false
+            }
+          }
+        ],
+        "criteriaMustSatisfy": "all"
+      },
+      {
+        "name": "Robots",
+        "children": [],
+        "behaviors": [
+          {
+            "name": "constructResponse",
+            "options": {
+              "enabled": true,
+              "body": "User-agent: *\nDisallow: /",
+              "responseCode": 200,
+              "forceEviction": false
+            }
+          }
+        ],
+        "criteria": [
+          {
+            "name": "path",
+            "options": {
+              "matchOperator": "MATCHES_ONE_OF",
+              "values": [
+                "/robots.txt"
+              ],
+              "matchCaseSensitive": false
+            }
+          }
+        ],
+        "criteriaMustSatisfy": "all"
+      }
+    ],
+    "behaviors": [
+      {
+        "name": "origin",
+        "options": {
+          "cacheKeyHostname": "ORIGIN_HOSTNAME",
+          "compress": true,
+          "enableTrueClientIp": false,
+          "forwardHostHeader": "ORIGIN_HOSTNAME",
+          "httpPort": 80,
+          "httpsPort": 443,
+          "originSni": true,
+          "originType": "CUSTOMER",
+          "verificationMode": "PLATFORM_SETTINGS",
+          "hostname": "sol.origin-web.spacewalk.tours",
+          "originCertificate": "",
+          "ports": ""
+        }
+      },
+      {
+        "name": "cpCode",
+        "options": {
+          "value": {
+            "id": 858861
+          }
+        }
+      },
+      {
+        "name": "caching",
+        "options": {
+          "behavior": "MAX_AGE",
+          "mustRevalidate": false,
+          "ttl": "5m"
+        }
+      },
+      {
+        "name": "allowPost",
+        "options": {
+          "allowWithoutContentLength": false,
+          "enabled": true
+        }
+      }
+    ],
+    "options": {
+      "is_secure": false
+    },
+    "variables": [],
+    "comments": "The behaviors in the Default Rule apply to all requests for the property hostname(s) unless another rule overrides the Default Rule settings."
+  }
+}

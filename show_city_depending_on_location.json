@@ -1,0 +1,118 @@
+{
+    "name": "show city depending on location",
+    "children": [
+        {
+            "name": "San Francisco",
+            "children": [],
+            "behaviors": [
+                {
+                    "name": "redirect",
+                    "options": {
+                        "mobileDefaultChoice": "DEFAULT",
+                        "destinationProtocol": "SAME_AS_REQUEST",
+                        "destinationHostname": "SAME_AS_REQUEST",
+                        "destinationPath": "OTHER",
+                        "queryString": "APPEND",
+                        "responseCode": 302,
+                        "destinationPathOther": "/city/94"
+                    }
+                }
+            ],
+            "criteria": [
+                {
+                    "name": "userLocation",
+                    "options": {
+                        "field": "COUNTRY",
+                        "matchOperator": "IS_ONE_OF",
+                        "countryValues": [
+                            "US"
+                        ],
+                        "checkIps": "BOTH",
+                        "useOnlyFirstXForwardedForIp": false
+                    }
+                }
+            ],
+            "criteriaMustSatisfy": "all"
+        },
+        {
+            "name": "London",
+            "children": [],
+            "behaviors": [
+                {
+                    "name": "redirect",
+                    "options": {
+                        "mobileDefaultChoice": "DEFAULT",
+                        "destinationProtocol": "SAME_AS_REQUEST",
+                        "destinationHostname": "SAME_AS_REQUEST",
+                        "destinationPath": "OTHER",
+                        "queryString": "APPEND",
+                        "responseCode": 302,
+                        "destinationPathOther": "/city/64"
+                    }
+                }
+            ],
+            "criteria": [
+                {
+                    "name": "userLocation",
+                    "options": {
+                        "field": "COUNTRY",
+                        "matchOperator": "IS_ONE_OF",
+                        "countryValues": [
+                            "GB"
+                        ],
+                        "checkIps": "BOTH",
+                        "useOnlyFirstXForwardedForIp": false
+                    }
+                }
+            ],
+            "criteriaMustSatisfy": "all"
+        },
+        {
+            "name": "Paris",
+            "children": [],
+            "behaviors": [
+                {
+                    "name": "redirect",
+                    "options": {
+                        "mobileDefaultChoice": "DEFAULT",
+                        "destinationProtocol": "SAME_AS_REQUEST",
+                        "destinationHostname": "SAME_AS_REQUEST",
+                        "destinationPath": "OTHER",
+                        "queryString": "APPEND",
+                        "responseCode": 302,
+                        "destinationPathOther": "/city/74"
+                    }
+                }
+            ],
+            "criteria": [
+                {
+                    "name": "userLocation",
+                    "options": {
+                        "field": "COUNTRY",
+                        "matchOperator": "IS_ONE_OF",
+                        "countryValues": [
+                            "FR"
+                        ],
+                        "checkIps": "BOTH",
+                        "useOnlyFirstXForwardedForIp": false
+                    }
+                }
+            ],
+            "criteriaMustSatisfy": "all"
+        }
+    ],
+    "behaviors": [],
+    "criteria": [
+          {
+            "name": "path",
+            "options": {
+              "matchOperator": "MATCHES_ONE_OF",
+              "values": [
+                "/geo"
+              ],
+              "matchCaseSensitive": false
+            }
+          }
+        ],    
+    "criteriaMustSatisfy": "all"
+}

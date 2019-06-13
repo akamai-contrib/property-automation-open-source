@@ -1,0 +1,17 @@
+{
+    "name": "Add response header",
+    "children": [],
+    "behaviors": [
+        {
+            "name": "modifyOutgoingResponseHeader",
+            "options": {
+                "action": "ADD",
+                "standardAddHeaderName": "OTHER",
+                "headerValue": "{{builtin.AK_CLIENT_RTT}}",
+                "customHeaderName": "rtt"
+            }
+        }
+    ],
+    "criteria": [],
+    "criteriaMustSatisfy": "all"
+}

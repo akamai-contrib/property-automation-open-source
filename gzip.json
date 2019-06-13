@@ -1,0 +1,26 @@
+{
+    "name": "gzip",
+    "children": [],
+    "behaviors": [
+        {
+            "name": "gzipResponse",
+            "options": {
+                "behavior": "ORIGIN_RESPONSE"
+            }
+        }
+    ],
+    "criteria": [
+        {
+            "name": "contentType",
+            "options": {
+                "matchOperator": "IS_ONE_OF",
+                "values": [
+                    "text/html*"
+                ],
+                "matchWildcard": true,
+                "matchCaseSensitive": false
+            }
+        }
+    ],
+    "criteriaMustSatisfy": "all"
+}

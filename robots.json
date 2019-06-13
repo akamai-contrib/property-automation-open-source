@@ -1,0 +1,28 @@
+{
+        "name": "Robots",
+        "children": [],
+        "behaviors": [
+          {
+            "name": "constructResponse",
+            "options": {
+              "enabled": true,
+              "body": "User-agent: *\nDisallow: /",
+              "responseCode": 200,
+              "forceEviction": false
+            }
+          }
+        ],
+        "criteria": [
+          {
+            "name": "path",
+            "options": {
+              "matchOperator": "MATCHES_ONE_OF",
+              "values": [
+                "/robots.txt"
+              ],
+              "matchCaseSensitive": false
+            }
+          }
+        ],
+        "criteriaMustSatisfy": "all"
+}

@@ -1,0 +1,101 @@
+{
+    "name": "Mobile App",
+    "children": [
+        {
+            "name": "iOS",
+            "children": [],
+            "behaviors": [
+                {
+                    "name": "redirect",
+                    "options": {
+                        "mobileDefaultChoice": "DEFAULT",
+                        "destinationProtocol": "HTTPS",
+                        "destinationHostname": "OTHER",
+                        "destinationPath": "OTHER",
+                        "queryString": "APPEND",
+                        "responseCode": 302,
+                        "destinationPathOther": "/us/app/akamai-developer-urbancrawl/id1319935414",
+                        "destinationHostnameOther": "itunes.apple.com"
+                    }
+                }
+            ],
+            "criteria": [
+                {
+                    "name": "deviceCharacteristic",
+                    "options": {
+                        "characteristic": "IS_WIRELESS_DEVICE",
+                        "booleanValue": true
+                    }
+                },
+                {
+                    "name": "deviceCharacteristic",
+                    "options": {
+                        "characteristic": "DEVICE_OS",
+                        "stringMatchOperator": "MATCHES_ONE_OF",
+                        "stringValue": [
+                            "iPhone OS"
+                        ],
+                        "matchCaseSensitive": false,
+                        "matchWildcard": true
+                    }
+                }
+            ],
+            "criteriaMustSatisfy": "all"
+        },
+        {
+            "name": "Android",
+            "children": [],
+            "behaviors": [
+                {
+                    "name": "redirect",
+                    "options": {
+                        "mobileDefaultChoice": "DEFAULT",
+                        "destinationProtocol": "HTTPS",
+                        "destinationHostname": "OTHER",
+                        "destinationPath": "OTHER",
+                        "queryString": "APPEND",
+                        "responseCode": 302,
+                        "destinationPathOther": "/store/apps/details?id=com.akamaidev.urbancrawlapp&hl=en_US",
+                        "destinationHostnameOther": "play.google.com"
+                    }
+                }
+            ],
+            "criteria": [
+                {
+                    "name": "deviceCharacteristic",
+                    "options": {
+                        "characteristic": "IS_WIRELESS_DEVICE",
+                        "booleanValue": true
+                    }
+                },
+                {
+                    "name": "deviceCharacteristic",
+                    "options": {
+                        "characteristic": "DEVICE_OS",
+                        "stringMatchOperator": "MATCHES_ONE_OF",
+                        "stringValue": [
+                            "Android"
+                        ],
+                        "matchCaseSensitive": false,
+                        "matchWildcard": true
+                    }
+                }
+            ],
+            "criteriaMustSatisfy": "all"
+        }
+    ],
+    "behaviors": [],
+    "criteria": [
+        {
+            "name": "path",
+            "options": {
+                "matchOperator": "MATCHES_ONE_OF",
+                "values": [
+                    "/get-the-app"
+                ],
+                "matchCaseSensitive": false
+            }
+        }
+    ],
+    "criteriaMustSatisfy": "all"
+}
