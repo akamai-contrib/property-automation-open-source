@@ -49,7 +49,8 @@ For example:
 Use jq to add a bunch of snipets into our configuration template (new files), or to existing files
 
 #### Variable Definitions (variables.cfg)
-```MYEDGERC=~/.edgerc
+```bash
+MYEDGERC=~/.edgerc
 MYPAPIEDGERC=devtrial-open
 MYIMEDGERC=devtrial-im
 MYCONFIG=javiergarza3
@@ -62,10 +63,13 @@ MYCPID=857555
 MYCPNAME=ION1
 LIBRARYLOCATION=https://raw.githubusercontent.com/akamai-contrib/property-automation-open-source/master/
 BASEFILE=property_template.json
-SNIPPETLIST="http2 gzip cache-h dynamic-debug-page"```
+SNIPPETLIST="http2 gzip cache-h dynamic-debug-page"
+```
 
 #### 5 lines of Code to put together a custom config and activate it on the staging, and store it on source control
-```source variables.cfg
+
+```bash
+source variables.cfg
 # Merge all snippets into a custom configuration 
 ORIGINAL=$BASEFILE ; for SNIPPET in $SNIPPETLIST ; do jq ".rules.children += [`jq -c . $SNIPPET` ]" $ORIGINAL > $MYRULES
 ; cp $MYRULES $ORIGINAL ; done 
@@ -75,6 +79,7 @@ akamai property --config $MYEDGERC --section $MYPAPIEDGERC create $MYCONFIG.edge
 akamai property --config $MYEDGERC --section $MYPAPIEDGERC activate $MYCONFIG.edgesuite.net --network staging
 # Put file on source control
 git add $MYRULES ; git commit -m "Adding $SNIPPETLIST TO: $BASEFILE" ; git push origin master
-# Wait for activation to complete and start functionality testing (Jenkins)```
+# Wait for activation to complete and start functionality testing (Jenkins)
+```
 
 
