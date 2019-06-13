@@ -5,11 +5,11 @@ This repository contains the source files and instructions on how you can automa
 
 ## Open source tools we will use
 
-* (Akamai CLI)[https://github.com/akamai/cli]: brew install akamai
-* (Akamai CLI property package)[https://github.com/akamai/cli-property]: akamai install property
-* (jq)[https://stedolan.github.io/jq/]: brew install jq
-* (curl)[https://curl.haxx.se/download.html]
-* (Akamai Property Manager)[https://control.akamai.com/apps/property-manager/]
+* [Akamai CLI](https://github.com/akamai/cli): brew install akamai
+* [Akamai CLI property package](https://github.com/akamai/cli-property): akamai install property
+* [jq](https://stedolan.github.io/jq/): brew install jq
+* [curl](https://curl.haxx.se/download.html)
+* [Akamai Property Manager](https://control.akamai.com/apps/property-manager/)
 
 ## Script
 
