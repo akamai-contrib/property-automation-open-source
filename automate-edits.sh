@@ -1,4 +1,6 @@
 source variables.cfg
+# download latest version of the property 
+akamai property --config $MYEDGERC --section $MYPAPIEDGERC retrieve $MYCONFIG.edgesuite.net --file $MYRULES 
 # Merge all snippets into a custom configuration 
 ORIGINAL=$MYBASEFILE ; for SNIPPET in $MYSNIPPETLIST ; do jq ".rules.children += [`jq -c . ${SNIPPET}.json` ]" $ORIGINAL > $MYRULES ; cp $MYRULES $ORIGINAL ; done 
 # Update Akamai configuration based on the generated JSON rules
