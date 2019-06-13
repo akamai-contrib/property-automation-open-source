@@ -13,7 +13,7 @@ This repository contains the source files and instructions on how you can automa
 
 ## Script
 
-Going to show you how you can create a modular pipeline that uses source control from scratch using tools you already have.
+Example of how you can create a modular pipeline that uses source control using open source tools.
 
 ### Create barebones property you can clone
 
@@ -49,7 +49,7 @@ For example:
 Use jq to add a bunch of snipets into our configuration template (new files), or to existing files
 
 #### Variable Definitions (variables.cfg)
-MYEDGERC=~/.edgerc
+``MYEDGERC=~/.edgerc
 MYPAPIEDGERC=devtrial-open
 MYIMEDGERC=devtrial-im
 MYCONFIG=javiergarza3
@@ -62,19 +62,19 @@ MYCPID=857555
 MYCPNAME=ION1
 LIBRARYLOCATION=https://raw.githubusercontent.com/akamai-contrib/property-automation-open-source/master/
 BASEFILE=property_template.json
-SNIPPETLIST="http2 gzip cache-h dynamic-debug-page"
+SNIPPETLIST="http2 gzip cache-h dynamic-debug-page"``
 
 #### 5 lines of Code to put together a custom config and activate it on the staging, and store it on source control
-source variables.cfg
-\# Merge all snippets into a custom configuration 
+``source variables.cfg
+# Merge all snippets into a custom configuration 
 ORIGINAL=$BASEFILE ; for SNIPPET in $SNIPPETLIST ; do jq ".rules.children += [`jq -c . $SNIPPET` ]" $ORIGINAL > $MYRULES
 ; cp $MYRULES $ORIGINAL ; done 
-\# Create Akamai configuration based on the generated JSON rules
+# Create Akamai configuration based on the generated JSON rules
 akamai property --config $MYEDGERC --section $MYPAPIEDGERC create $MYCONFIG.edgesuite.net --forward origin --hostnames $MYCONFIG.edgesuite.net --edgehostname $MYCONFIG.edgesuite.net --origin $MYORIGIN --group $MYGROUPID --contract $MYCONTRACTID --product $MYPROD --file $MYRULES --newcpcodename $MYCONFIG
-\# Activate Akamai configuration on staging
+# Activate Akamai configuration on staging
 akamai property --config $MYEDGERC --section $MYPAPIEDGERC activate $MYCONFIG.edgesuite.net --network staging
-\# Put file on source control
+# Put file on source control
 git add $MYRULES ; git commit -m "Adding $SNIPPETLIST TO: $BASEFILE" ; git push origin master
-\# Wait for activation to complete and start functionality testing
+# Wait for activation to complete and start functionality testing (Jenkins)``
 
 
